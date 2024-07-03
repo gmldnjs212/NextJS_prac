@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Navigation() {
     // "use client가 필요함, client에서만 작동"
     const path = usePathname(); 
-    console.log(path);
+    const [count, setCount] = useState(0);
+
     return (
-        <nav>
+        <nav> 
             <ul>
                 <li>
                     <Link href="/">Home</Link> {path === "/" ? "🚩" : ""}
@@ -16,7 +18,11 @@ export default function Navigation() {
                 <li>
                     <Link href="/about-us">About Us</Link> {path === "/about-us" ? "🚩" : ""}
                 </li>
+                <li>
+                    <button onClick={()=>setCount((c)=>c+1)}>{count}</button>
+                </li>
             </ul>
         </nav>
     )
 }
+
